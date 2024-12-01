@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/davidscottmills/goeditorjs"
+	"github.com/StencilFrame/goeditorjs"
 )
 
 func main() {
