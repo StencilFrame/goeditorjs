@@ -1,7 +1,9 @@
 package goeditorjs_test
 
 import (
+	"bytes"
 	"errors"
+	"os"
 	"testing"
 
 	"github.com/stencilframe/goeditorjs"
@@ -75,4 +77,22 @@ func Test_GenerateHTML_Result_Includes_Handler_Result(t *testing.T) {
 	result, _ := eng.GenerateHTML(editorJSData)
 	require.Contains(t, result, handlerResult)
 	bh.AssertCalled(t, "GenerateHTML", mock.Anything)
+}
+
+func Test_GenerateHTML(t *testing.T) {
+	editorJSData, err := os.ReadFile("testdata/blocks.json")
+	require.NoError(t, err)
+	eng := goeditorjs.NewHTMLEngine()
+	eng.RegisterBlockHandlers(
+		&goeditorjs.HeaderHandler{},
+		&goeditorjs.ParagraphHandler{},
+		&goeditorjs.ListHandler{},
+		&goeditorjs.ImageHandler{},
+	)
+	result, err := eng.GenerateHTML(string(editorJSData))
+	require.NoError(t, err)
+	expectedHTML, err := os.ReadFile("testdata/blocks.html")
+	require.NoError(t, err)
+	expectedHTML = bytes.ReplaceAll(expectedHTML, []byte("\n"), []byte(""))
+	require.Equal(t, string(expectedHTML), result)
 }

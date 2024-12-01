@@ -1,0 +1,101 @@
+{
+    "blocks": [
+        {
+            "type": "header",
+            "data": {
+                "text": "Header title",
+                "level": 1
+            }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "This is a paragraph."
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+            "style": "ordered",
+            "meta": {
+                "start": 1
+            },
+            "items": [
+                {
+                    "content": "Item one",
+                    "meta": {},
+                    "items": []
+                }
+            ]
+            }
+        },
+        {
+            "type": "image",
+            "data": {
+            "file": {
+                "url": "/dummy.jpg"
+            },
+            "caption": "Dummy image"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+            "style": "ordered",
+            "meta": {
+                "start": 2
+            },
+            "items": [
+                {
+                    "content": "Item two",
+                    "meta": {},
+                    "items": []
+                }
+            ]
+            }
+        },
+        {
+            "type": "image",
+            "data": {
+            "file": {
+                "url": "/dummy2.jpg"
+            },
+            "caption": "Dummy image 2"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "start": 3
+                },
+                "items": [
+                    {
+                        "content": "Item three",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "Item four",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "type": "header",
+            "data": {
+                "text": "Header title 2",
+                "level": 2
+            }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "This is another paragraph."
+            }
+        }
+    ]
+  }
