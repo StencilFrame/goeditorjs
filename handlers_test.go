@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/StencilFrame/goeditorjs"
+	"github.com/stencilframe/goeditorjs"
 	"github.com/stretchr/testify/require"
 )
 

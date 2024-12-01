@@ -1,4 +1,4 @@
-module github.com/StencilFrame/goeditorjs
+module github.com/stencilframe/goeditorjs
 
 go 1.15
 
