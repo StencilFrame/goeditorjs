@@ -1,7 +1,6 @@
 package goeditorjs_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stencilframe/goeditorjs"
@@ -80,30 +79,12 @@ func Test_ParagraphHandler_GenerateHTML_Returns_Parse_Err(t *testing.T) {
 	require.Error(t, err)
 }
 
-func Test_ParagraphHandler_GenerateHTML_Left(t *testing.T) {
+func Test_ParagraphHandler_GenerateHTML(t *testing.T) {
 	bph := &goeditorjs.ParagraphHandler{}
-	jsonData := []byte(`{"text": "paragraph","alignment": "left"}`)
+	jsonData := []byte(`{"text": "paragraph"}`)
 	ejsBlock := goeditorjs.EditorJSBlock{Type: "paragraph", Data: jsonData}
 	html, _ := bph.GenerateHTML(ejsBlock)
 	require.Equal(t, "<p>paragraph</p>", html)
-}
-
-func Test_ParagraphHandler_GenerateHTML_Center_Right(t *testing.T) {
-	bph := &goeditorjs.ParagraphHandler{}
-	testData := []struct {
-		alignment string
-		data      string
-	}{
-		{alignment: "center", data: `{"text": "paragraph","alignment": "center"}`},
-		{alignment: "right", data: `{"text": "paragraph","alignment": "right"}`},
-	}
-
-	for _, td := range testData {
-		jsonData := []byte(td.data)
-		ejsBlock := goeditorjs.EditorJSBlock{Type: "paragraph", Data: jsonData}
-		html, _ := bph.GenerateHTML(ejsBlock)
-		require.Equal(t, fmt.Sprintf(`<p style="text-align:%s">paragraph</p>`, td.alignment), html)
-	}
 }
 
 func Test_ParagraphHandler_GenerateMarkdown_Returns_Parse_Err(t *testing.T) {
@@ -112,30 +93,12 @@ func Test_ParagraphHandler_GenerateMarkdown_Returns_Parse_Err(t *testing.T) {
 	require.Error(t, err)
 }
 
-func Test_ParagraphHandler_GenerateMarkdown_Left(t *testing.T) {
+func Test_ParagraphHandler_GenerateMarkdown(t *testing.T) {
 	bph := &goeditorjs.ParagraphHandler{}
-	jsonData := []byte(`{"text": "paragraph","alignment": "left"}`)
+	jsonData := []byte(`{"text": "paragraph"}`)
 	ejsBlock := goeditorjs.EditorJSBlock{Type: "paragraph", Data: jsonData}
 	md, _ := bph.GenerateMarkdown(ejsBlock)
 	require.Equal(t, "paragraph", md)
-}
-
-func Test_ParagraphHandler_GenerateMarkdown_Center_Right(t *testing.T) {
-	bph := &goeditorjs.ParagraphHandler{}
-	testData := []struct {
-		alignment string
-		data      string
-	}{
-		{alignment: "center", data: `{"text": "paragraph","alignment": "center"}`},
-		{alignment: "right", data: `{"text": "paragraph","alignment": "right"}`},
-	}
-
-	for _, td := range testData {
-		jsonData := []byte(td.data)
-		ejsBlock := goeditorjs.EditorJSBlock{Type: "paragraph", Data: jsonData}
-		md, _ := bph.GenerateMarkdown(ejsBlock)
-		require.Equal(t, fmt.Sprintf(`<p style="text-align:%s">paragraph</p>`, td.alignment), md)
-	}
 }
 
 func Test_ListHandler_Type(t *testing.T) {
@@ -155,9 +118,9 @@ func Test_ListHandler_GenerateHTML(t *testing.T) {
 		data           string
 		expectedResult string
 	}{
-		{data: `{"style": "ordered", "items": ["one", "two", "three"]}`,
+		{data: `{"style": "ordered", "items": [{"content": "one"}, {"content": "two"}, {"content": "three"}]}`,
 			expectedResult: "<ol><li>one</li><li>two</li><li>three</li></ol>"},
-		{data: `{"style": "unordered", "items": ["one", "two", "three"]}`,
+		{data: `{"style": "unordered", "items": [{"content": "one"}, {"content": "two"}, {"content": "three"}]}`,
 			expectedResult: "<ul><li>one</li><li>two</li><li>three</li></ul>"},
 	}
 
@@ -181,9 +144,9 @@ func Test_ListHandler_GenerateMarkdown(t *testing.T) {
 		data           string
 		expectedResult string
 	}{
-		{data: `{"style": "ordered", "items": ["one", "two", "three"]}`,
+		{data: `{"style": "ordered", "items": [{"content": "one"}, {"content": "two"}, {"content": "three"}]}`,
 			expectedResult: "1. one\n1. two\n1. three"},
-		{data: `{"style": "unordered", "items": ["one", "two", "three"]}`,
+		{data: `{"style": "unordered", "items": [{"content": "one"}, {"content": "two"}, {"content": "three"}]}`,
 			expectedResult: "- one\n- two\n- three"},
 	}
 

@@ -37,8 +37,21 @@ type paragraph struct {
 
 // list represents list data from EditorJS
 type list struct {
-	Style string   `json:"style"`
-	Items []string `json:"items"`
+	Style string     `json:"style"`
+	Meta  listMeta   `json:"meta"`
+	Items []listItem `json:"items"`
+}
+
+// listMeta represents list meta data from EditorJS
+type listMeta struct {
+	// TODO: Add meta data
+}
+
+// listItem represents list item data from EditorJS
+type listItem struct {
+	Content string     `json:"content"`
+	Meta    listMeta   `json:"meta"`
+	Items   []listItem `json:"items"`
 }
 
 // codeBox represents code box data from EditorJS
