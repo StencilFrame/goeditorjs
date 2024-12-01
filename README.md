@@ -1,4 +1,4 @@
-# davidscottmills/goeditorjs
+# StencilFrame/goeditorjs
 
 An extensible library that converts [editor.js](https://editorjs.io/) data into HTML or markdown.
 
@@ -13,7 +13,7 @@ An extensible library that converts [editor.js](https://editorjs.io/) data into 
 ## Installation
 
 ```bash
-go get github.com/davidscottmills/goeditorjs
+go get github.com/stencilframe/goeditorjs
 ```
 
 ## Usage
@@ -24,57 +24,57 @@ package main
 import (
 	"io/ioutil"
 	"log"
-
-	"github.com/davidscottmills/goeditorjs"
+	
+	"github.com/stencilframe/goeditorjs"
 )
 
 func main() {
 	content, err := ioutil.ReadFile("editorjs_output.json")
-	if err != nil {
+		if err != nil {
 		log.Fatal(err)
 	}
-
+	
 	ejs := string(content)
-
-    // HTML
-    // Get the HTML engine
-    htmlEngine := goeditorjs.NewHTMLEngine()
-    // Register the handlers you wish to use
+	
+	// HTML
+	// Get the HTML engine
+	htmlEngine := goeditorjs.NewHTMLEngine()
+	// Register the handlers you wish to use
 	htmlEngine.RegisterBlockHandlers(
 		&goeditorjs.HeaderHandler{},
 		&goeditorjs.ParagraphHandler{},
 		&goeditorjs.ListHandler{},
 		&goeditorjs.CodeBoxHandler{},
 	)
-    // Generate the html
+	// Generate the html
 	html, err := htmlEngine.GenerateHTML(ejs)
 	if err != nil {
 		log.Fatal(err)
-    }
-
-    // Do something with the html output. In this case, write it to a file.
+	}
+	
+	// Do something with the html output. In this case, write it to a file.
 	err = ioutil.WriteFile("editorjs.html", []byte(html), 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-    // Generate markdown and save it to a file
-    // Get the markdown engine
+	
+	// Generate markdown and save it to a file
+	// Get the markdown engine
 	markdownEngine := goeditorjs.NewMarkdownEngine()
-    // Register the handlers you wish to use
+	// Register the handlers you wish to use
 	markdownEngine.RegisterBlockHandlers(
 		&goeditorjs.HeaderHandler{},
 		&goeditorjs.ParagraphHandler{},
 		&goeditorjs.ListHandler{},
 		&goeditorjs.CodeBoxHandler{},
-    )
-    // Generate the markdown
+	)
+	// Generate the markdown
 	md, err := markdownEngine.GenerateMarkdown(ejs)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-    // Do something with the md output. In this case, write it to a file.
+	
+	// Do something with the md output. In this case, write it to a file.
 	err = ioutil.WriteFile("editorjs.md", []byte(md), 0644)
 	if err != nil {
 		log.Fatal(err)
@@ -167,7 +167,3 @@ func (h *HeaderHandler) GenerateMarkdown(editorJSBlock EditorJSBlock) (string, e
 	return fmt.Sprintf("%s %s", strings.Repeat("#", header.Level), header.Text), nil
 }
 ```
-
-## TODO
-
-- Provide more handlers (table, etc.)
