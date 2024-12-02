@@ -101,3 +101,7 @@ type image struct {
 type file struct {
 	URL string `json:"url"`
 }
+
+type table struct {
+	Content [][]string `json:"content"`
+}
