@@ -35,16 +35,40 @@ type paragraph struct {
 	Alignment string `json:"alignment"`
 }
 
+// ListStyle represents the style of list
+type ListStyle string
+
+// listStyle constants
+const (
+	ListStyleOrdered   ListStyle = "ordered"
+	ListStyleUnordered ListStyle = "unordered"
+)
+
 // list represents list data from EditorJS
 type list struct {
-	Style string     `json:"style"`
+	Style ListStyle  `json:"style"`
 	Meta  listMeta   `json:"meta"`
 	Items []listItem `json:"items"`
 }
 
+// CounterType represents the type of counter for ordered lists
+type CounterType string
+
+// CounterType constants
+const (
+	CounterTypeNumeric    CounterType = "numeric"
+	CounterTypeLowerRoman CounterType = "lower-roman"
+	CounterTypeUpperRoman CounterType = "upper-roman"
+	CounterTypeLowerAlpha CounterType = "lower-alpha"
+	CounterTypeUpperAlpha CounterType = "upper-alpha"
+	CounterTypeDefault                = CounterTypeNumeric
+)
+
 // listMeta represents list meta data from EditorJS
 type listMeta struct {
-	// TODO: Add meta data
+	Checked     bool        `json:"checked,omitempty"`     // for Checklist
+	Start       int         `json:"start,omitempty"`       // for Ordered list
+	CounterType CounterType `json:"counterType,omitempty"` // for Ordered list
 }
 
 // listItem represents list item data from EditorJS

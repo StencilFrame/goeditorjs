@@ -145,7 +145,7 @@ func Test_ListHandler_GenerateMarkdown(t *testing.T) {
 		expectedResult string
 	}{
 		{data: `{"style": "ordered", "items": [{"content": "one"}, {"content": "two"}, {"content": "three"}]}`,
-			expectedResult: "1. one\n1. two\n1. three"},
+			expectedResult: "1. one\n2. two\n3. three"},
 		{data: `{"style": "unordered", "items": [{"content": "one"}, {"content": "two"}, {"content": "three"}]}`,
 			expectedResult: "- one\n- two\n- three"},
 	}

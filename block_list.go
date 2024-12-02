@@ -26,11 +26,25 @@ func (h *ListHandler) GenerateHTML(editorJSBlock EditorJSBlock) (string, error) 
 		return "", err
 	}
 
-	result := ""
-	if list.Style == "ordered" {
-		result = "<ol>%s</ol>"
+	start := ""
+	end := ""
+	if list.Style == ListStyleOrdered {
+		startAttr := ""
+		typeAttr := ""
+
+		if list.Meta.Start > 1 {
+			startAttr = fmt.Sprintf(` start="%d"`, list.Meta.Start)
+		}
+
+		if list.Meta.CounterType != "" {
+			typeAttr = fmt.Sprintf(` type="%s"`, list.Meta.CounterType)
+		}
+
+		start = fmt.Sprintf("<ol%s%s>", startAttr, typeAttr)
+		end = "</ol>"
 	} else {
-		result = "<ul>%s</ul>"
+		start = "<ul>"
+		end = "</ul>"
 	}
 
 	innerData := ""
@@ -38,7 +52,7 @@ func (h *ListHandler) GenerateHTML(editorJSBlock EditorJSBlock) (string, error) 
 		innerData += fmt.Sprintf("<li>%s</li>", s.Content)
 	}
 
-	return fmt.Sprintf(result, innerData), nil
+	return start + innerData + end, nil
 }
 
 // GenerateMarkdown generates markdown for ListBlocks
@@ -48,15 +62,13 @@ func (h *ListHandler) GenerateMarkdown(editorJSBlock EditorJSBlock) (string, err
 		return "", err
 	}
 
-	listItemPrefix := ""
-	if list.Style == "ordered" {
-		listItemPrefix = "1. "
-	} else {
-		listItemPrefix = "- "
-	}
+	listItemPrefix := "- "
 
 	results := []string{}
-	for _, s := range list.Items {
+	for i, s := range list.Items {
+		if list.Style == ListStyleOrdered {
+			listItemPrefix = fmt.Sprintf("%d. ", i+1)
+		}
 		results = append(results, listItemPrefix+s.Content)
 	}
 
