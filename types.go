@@ -42,6 +42,7 @@ type ListStyle string
 const (
 	ListStyleOrdered   ListStyle = "ordered"
 	ListStyleUnordered ListStyle = "unordered"
+	ListStyleChecklist ListStyle = "checklist"
 )
 
 // list represents list data from EditorJS
@@ -63,6 +64,15 @@ const (
 	CounterTypeUpperAlpha CounterType = "upper-alpha"
 	CounterTypeDefault                = CounterTypeNumeric
 )
+
+// counterTypeToHTML maps CounterType to HTML
+var counterTypeToHTML = map[CounterType]string{
+	CounterTypeNumeric:    "1",
+	CounterTypeLowerRoman: "i",
+	CounterTypeUpperRoman: "I",
+	CounterTypeLowerAlpha: "a",
+	CounterTypeUpperAlpha: "A",
+}
 
 // listMeta represents list meta data from EditorJS
 type listMeta struct {

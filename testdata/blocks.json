@@ -16,51 +16,51 @@
         {
             "type": "list",
             "data": {
-            "style": "ordered",
-            "meta": {
-                "start": 1
-            },
-            "items": [
-                {
-                    "content": "Item one",
-                    "meta": {},
-                    "items": []
-                }
-            ]
+                "style": "ordered",
+                "meta": {
+                    "start": 1
+                },
+                "items": [
+                    {
+                        "content": "Item one",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
             }
         },
         {
             "type": "image",
             "data": {
-            "file": {
-                "url": "/dummy.jpg"
-            },
-            "caption": "Dummy image"
+                "file": {
+                    "url": "/dummy.jpg"
+                },
+                "caption": "Dummy image"
             }
         },
         {
             "type": "list",
             "data": {
-            "style": "ordered",
-            "meta": {
-                "start": 2
-            },
-            "items": [
-                {
-                    "content": "Item two",
-                    "meta": {},
-                    "items": []
-                }
-            ]
+                "style": "ordered",
+                "meta": {
+                    "start": 2
+                },
+                "items": [
+                    {
+                        "content": "Item two",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
             }
         },
         {
             "type": "image",
             "data": {
-            "file": {
-                "url": "/dummy2.jpg"
-            },
-            "caption": "Dummy image 2"
+                "file": {
+                    "url": "/dummy2.jpg"
+                },
+                "caption": "Dummy image 2"
             }
         },
         {
@@ -96,6 +96,163 @@
             "data": {
                 "text": "This is another paragraph."
             }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "checklist:"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+                "style": "checklist",
+                "meta": {},
+                "items": [
+                    {
+                        "content": "First",
+                        "meta": {
+                            "checked": false
+                        },
+                        "items": []
+                    },
+                    {
+                        "content": "Second",
+                        "meta": {
+                            "checked": true
+                        },
+                        "items": []
+                    },
+                    {
+                        "content": "Third",
+                        "meta": {
+                            "checked": false
+                        },
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "unordered list:"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": {},
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "Ordered list (numbers)"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "counterType": "numeric"
+                },
+                "items": [
+                    {
+                        "content": "a",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "b",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "c",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "Ordered list (alpha)"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "counterType": "upper-alpha"
+                },
+                "items": [
+                    {
+                        "content": "one",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "two",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "three",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "type": "paragraph",
+            "data": {
+                "text": "Ordered list (Roman)"
+            }
+        },
+        {
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "counterType": "upper-roman"
+                },
+                "items": [
+                    {
+                        "content": "one",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "two",
+                        "meta": {},
+                        "items": []
+                    },
+                    {
+                        "content": "three",
+                        "meta": {},
+                        "items": []
+                    }
+                ]
+            }
         }
     ]
-  }
+}

@@ -28,7 +28,10 @@ func (h *ListHandler) GenerateHTML(editorJSBlock EditorJSBlock) (string, error) 
 
 	start := ""
 	end := ""
-	if list.Style == ListStyleOrdered {
+	if list.Style == ListStyleChecklist {
+		start = `<ul class="checklist">`
+		end = "</ul>"
+	} else if list.Style == ListStyleOrdered {
 		startAttr := ""
 		typeAttr := ""
 
@@ -37,7 +40,7 @@ func (h *ListHandler) GenerateHTML(editorJSBlock EditorJSBlock) (string, error) 
 		}
 
 		if list.Meta.CounterType != "" {
-			typeAttr = fmt.Sprintf(` type="%s"`, list.Meta.CounterType)
+			typeAttr = fmt.Sprintf(` type="%s"`, counterTypeToHTML[list.Meta.CounterType])
 		}
 
 		start = fmt.Sprintf("<ol%s%s>", startAttr, typeAttr)
@@ -49,6 +52,10 @@ func (h *ListHandler) GenerateHTML(editorJSBlock EditorJSBlock) (string, error) 
 
 	innerData := ""
 	for _, s := range list.Items {
+		if list.Style == ListStyleChecklist && s.Meta.Checked {
+			innerData += fmt.Sprintf(`<li class="checked">%s</li>`, s.Content)
+			continue
+		}
 		innerData += fmt.Sprintf("<li>%s</li>", s.Content)
 	}
 
